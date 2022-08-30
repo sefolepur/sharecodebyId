@@ -14,16 +14,23 @@ const post=()=>{
     const task=document.getElementById('task').value
     const token =create_random_string()
     // console.log(data,token);
-    axios.post('/api/v1/tasks',{
+    if(task != ""){
+        axios.post('/api/v1/tasks',{
         code:task,
         Token:token
     }).then(responce=>{
-        console.log(responce.data);
+        // console.log(responce.data);
     }).catch(err=>{
         console.log(err,err.responce.data);
     })
     const tokenInput =document.getElementById("token")
     tokenInput.value=token
+    return
+    }
+    else{
+        alert('the code is empty')
+        return
+    }
 }
 
 const get=()=>{
@@ -34,6 +41,8 @@ const get=()=>{
         const {task :{code}} = responce.data
         const task=document.getElementById('task')
         task.value=code
+    }).catch(err=>{
+        alert('the Token is not found!!!!')
     })
 }
 

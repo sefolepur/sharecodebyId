@@ -18,7 +18,7 @@ router.get('/:code',async(req,res)=>{
     const task = await Task.findOne({Token:code})
     res.status(200).json({task})
     } catch (error) {
-        res.status(500).json({msg:error})
+        res.status(200).json({msg:error})
     }
 })
 module.exports =router
